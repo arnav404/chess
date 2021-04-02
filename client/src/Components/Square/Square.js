@@ -11,11 +11,12 @@ const Square = (props) => {
 
     // Is it clicked
     var [isClicked, setIC] = useState(false)
+    var [isPM, setPM] = useState(false)
 
     useEffect(() => {
-        console.log(props.isClicked)
         setIC(props.isClicked)
-    }, [props.isClicked])
+        setPM(props.isPM)
+    }, [props.isClicked, props.isPM])
 
     // Called every render
     useEffect(() => {
@@ -23,6 +24,9 @@ const Square = (props) => {
         // First checking if the user has clicked the square
         if(isClicked) {
             setBGC("orange")
+            setTC("#F04A00")
+        } else if (isPM) {
+            setBGC("pink")
             setTC("#F04A00")
         } else {
             // If the square has not been clicked, it must have a dark or light color
@@ -34,14 +38,17 @@ const Square = (props) => {
                 setTC("blanchedalmond")
             }
         }
-    }, [isClicked])
+    }, [isClicked, isPM])
 
     // Return statement for the square
     return (
         <div style={{backgroundColor: bgc}} className="square">
-            <h5 style={{color: textColor}} className="squareText">{String.fromCharCode(97 + props.square%10)+(8-parseInt(props.square/10))}</h5>
+            <h5 style={{color: textColor}} className="squareText">{props.square}</h5>
+            <img className="piece" src={process.env.PUBLIC_URL+'../../Assets/Pieces/'+props.currentPiece+'.svg'} alt=""></img>
         </div>
     )
 }
 
 export default Square
+
+//+" "+{String.fromCharCode(97 + props.square%10)+(8-parseInt(props.square/10))}
