@@ -25,7 +25,7 @@ const possibleSquares = (board, id) => {
 
             if(board[Math.trunc(id/10)-moveDirection][id%10] === "") {
                 squares.push(id-10*moveDirection)
-            } if((Math.trunc(id/10) === 6 || Math.trunc(id/10) === 1) && board[Math.trunc(id/10)-moveDirection][id%10] === "") {
+            } if((Math.trunc(id/10) === 6 || Math.trunc(id/10) === 1) && board[Math.trunc(id/10)-2*moveDirection][id%10] === "") {
                 squares.push(id-20*moveDirection)
             }
 

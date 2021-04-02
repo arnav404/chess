@@ -6,6 +6,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  border: solid;
 }
 
 /* Square Text (i.e. e4) */
