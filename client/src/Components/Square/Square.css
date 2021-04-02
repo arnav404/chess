@@ -1,0 +1,12 @@
+/* Class for the square container */
+.square {
+  width: 100px;
+  height: 100px;
+  background-color: blanchedalmond;
+}
+
+.squareText {
+  padding-left: 5px;
+  padding-top: 5px;
+  color: white;
+}

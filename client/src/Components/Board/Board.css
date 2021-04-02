@@ -1,0 +1,10 @@
+.board {
+  width: 800px;
+  height: 800px;
+  margin: 0 auto;
+}
+
+.nopadding {
+  padding: 0 !important;
+  margin: 0 !important;
+}
