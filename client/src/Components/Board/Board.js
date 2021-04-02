@@ -5,6 +5,7 @@ import Square from '../Square/Square'
 import { Row, Col } from 'react-bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import possibleSquares from '../../Data/PossibleSquares'
+import check from '../../Data/Check'
 
 const Board = () => {
     
@@ -29,14 +30,42 @@ const Board = () => {
     var [clickedSquare, setClicked] = useState(99)
 
     // Function is called when a square is clicked
-    const clicked = (i, j, piece) => {
+    const clicked = (i, j) => {
+        // If the square clicked is pink
         if(possibleMoves.includes(10*i+j)) {
             var temp = board[Math.trunc(clickedSquare/10)][clickedSquare % 10]
             board[Math.trunc(clickedSquare/10)][clickedSquare % 10] = ""
             board[i][j] = temp
+            setClicked(99)
+            setPM([])
+        } else {
+            var possibles = possibleSquares(board, 10*i+j)
+            console.log(possibleMoves)
+            var verifiedMoves = []
+            for(var it = 0; it < possibles.length; it++) {
+                var tempBoard = []
+
+                for(var one = 0; one < 8; one++) {
+                    var arr = []
+                    for(var two = 0; two < 8; two++) {
+                        arr.push(board[one][two])
+                    }
+                    tempBoard.push(arr)
+                }
+
+                var temp = tempBoard[i][j]
+                tempBoard[i][j] = ""
+                tempBoard[Math.trunc(possibles[it]/10)][possibles[it] % 10] = temp
+
+                if(!check(tempBoard, board[i][j].charAt(0))) {
+                    console.log("HERE")
+                    verifiedMoves.push(possibles[it])
+                }
+                    
+            }
+            setPM(verifiedMoves)
+            setClicked(10*i+j)
         }
-        setPM(possibleSquares(board, 10*i+j))
-        setClicked(10*i+j)
     }
 
     return (

@@ -20,7 +20,6 @@ const Square = (props) => {
 
     // Called every render
     useEffect(() => {
-        console.log(isClicked)
         // First checking if the user has clicked the square
         if(isClicked) {
             setBGC("orange")

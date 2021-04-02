@@ -45,7 +45,7 @@ const possibleSquares = (board, id) => {
     }
 
     //Knights
-    if(selectedPiece.charAt(1) === 'n') {
+    else if(selectedPiece.charAt(1) === 'n') {
         var temp = [id-20+1, id-20-1, id+10+2, id-10+2, id-10-2, id+10-2, id+20-1, id+20+1, id];
         for(const square of temp) {
             try { if(board[Math.trunc(square/10)][square%10].charAt(0) != side) {
@@ -55,7 +55,7 @@ const possibleSquares = (board, id) => {
     } 
 
     //Bishops, rooks, queen
-    if(selectedPiece.charAt(1) === 'r' || selectedPiece.charAt(1) === 'b' || selectedPiece.charAt(1) === 'q') {
+    else if(selectedPiece.charAt(1) === 'r' || selectedPiece.charAt(1) === 'b' || selectedPiece.charAt(1) === 'q') {
         //These are the directions the piece can go
         var directions
 
@@ -82,7 +82,7 @@ const possibleSquares = (board, id) => {
     }
 
     //King
-    if(selectedPiece.charAt(1) === 'k') {
+    else if(selectedPiece.charAt(1) === 'k') {
         for(var i=id%10-1; i <= id%10+1; i++) {
             for(var j=Math.trunc(id/10)-1; j <= Math.trunc(id/10)+1; j++) {
                 try {
@@ -95,7 +95,7 @@ const possibleSquares = (board, id) => {
         
     }
 
-    console.log(squares)
+    else {}
 
     return squares
 
