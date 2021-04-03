@@ -57,7 +57,6 @@ const Square = (props) => {
     // Return statement for the square
     return (
         <div style={{transform: "rotate("+side+")", backgroundColor: bgc}} className="square">
-            <h5 style={{color: textColor}} className="squareText">{String.fromCharCode(97 + props.square%10)+(8-parseInt(props.square/10))}</h5>
             <img className="piece" src={process.env.PUBLIC_URL+'../../Assets/Pieces/'+props.currentPiece+'.svg'} alt=""></img>
         </div>
     )

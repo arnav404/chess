@@ -14,12 +14,26 @@ import Square from '../Square/Square'
 import possibleSquares from '../../Data/PossibleSquares'
 import check from '../../Data/Check'
 
+//Socket.io
+import io from 'socket.io-client'
+
+let socket;
+
+var connectionOptions =  {
+    "force new connection" : true,
+    "reconnectionAttempts": "Infinity", 
+    "timeout" : 10000,                  
+    "transports" : ["websocket"]
+};
+
 const Board = () => {
+
+    const ENDPOINT = 'localhost:5555'
 
     // Which color are you (boardRotation changes the board view)
     var [side, setSide] = useState('w')
     var [boardRotation, setBR] = useState("0deg")
-    var [isTurn, setTurn] = useState(true)
+    var [whoseMove, setWM] = useState('w')
     
     // Current state of the board
     var [board, setBoard] = useState(
@@ -40,6 +54,29 @@ const Board = () => {
 
     // Current clicked square
     var [clickedSquare, setClicked] = useState(99)
+
+    // On connect to server
+    useEffect(() => {
+
+        socket = io(ENDPOINT, connectionOptions);
+
+        socket.on('conn', ( numOfPlayers ) => {
+            console.log("conn")
+            if(numOfPlayers == 1) {
+                console.log("B")
+                setSide('b')
+            } else {
+                console.log("W")
+                setSide('w')
+            }
+        })
+
+        socket.on('boardBack', ({board: board, whoseMove: whoseMove}) => {
+            console.log("boardback")
+            setBoard(board)
+            setWM(whoseMove)
+        })
+    }, [ENDPOINT])
 
     //Called every render
     useEffect(() => {
@@ -63,10 +100,16 @@ const Board = () => {
             setClicked(99)
             setPM([])
 
+            var whose = 'w'
+            if(whoseMove == 'w') {
+                whose = 'b'
+            }
+            socket.emit('board', {board: board, whoseMove: whose})
+
         } 
         
         // User clicks a non-pink square
-        else if (board[i][j].charAt(0) === side && isTurn) {
+        else if (board[i][j].charAt(0) === side && whoseMove === side) {
 
             // This is the list of possible squares the selected piece can jump
             var possibles = possibleSquares(board, 10*i+j)
