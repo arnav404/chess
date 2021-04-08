@@ -1,0 +1,94 @@
+.side {
+  background-color: rgb(255, 255, 255);
+  border: solid;
+  border-radius: 10px;
+  width: 400px;
+  height: 300px;
+}
+
+.bigbux {
+  border: none;
+  color: rgb(255, 255, 255);
+  text-align: center;
+  text-decoration: none;
+  width: 120px;
+  height: 40px;
+  border-radius: 4px;
+  width: 100%;
+  font-size: 20px;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+}
+
+.blue {
+  background-color: #0e579b;
+}
+
+.blue:hover {
+  background-color: #063866 !important;
+}
+
+.cancel {
+  background-color: rgb(167, 11, 11) !important;
+}
+
+.cancel:hover {
+  background-color: rgb(102, 5, 5) !important;
+}
+
+.join {
+  background-color: rgb(1, 168, 85) !important;
+}
+
+.join:hover {
+  background-color: rgb(4, 83, 44) !important;
+}
+
+.bigbux:disabled {
+  background-color: rgb(216, 216, 216);
+  color: white;
+}
+
+.textbox {
+  width: 70%;
+  margin: 0 auto;
+  padding-bottom: 10px;
+}
+
+.backbutton {
+  width: 20%;
+  position: relative;
+  padding-left: 20px;
+}
+
+.buttondiv {
+  width: 50%;
+  margin: 0 auto;
+}
+
+.text {
+  padding: 10px;
+  text-align: center;
+  font-weight: 600;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+}
+
+.code {
+  text-align: center;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-weight: 700;
+}
+
+.instruction {
+  color: gray;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  font-size: 20px;
+  padding: 10px;
+  text-align: center;
+}
+
+.centered {
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
