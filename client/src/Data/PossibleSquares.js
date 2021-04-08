@@ -25,9 +25,10 @@ const possibleSquares = (board, id) => {
 
             if(board[Math.trunc(id/10)-moveDirection][id%10] === "") {
                 squares.push(id-10*moveDirection)
-            } if((Math.trunc(id/10) === 6 || Math.trunc(id/10) === 1) && board[Math.trunc(id/10)-2*moveDirection][id%10] === "") {
-                squares.push(id-20*moveDirection)
-            }
+                if((Math.trunc(id/10) === 6 || Math.trunc(id/10) === 1) && board[Math.trunc(id/10)-2*moveDirection][id%10] === "") {
+                    squares.push(id-20*moveDirection)
+                }
+            } 
 
         } catch {
             //Promotion
@@ -92,6 +93,33 @@ const possibleSquares = (board, id) => {
                 } catch {}
             }
         }
+
+        if(side == 'w'){
+
+            //Kingside
+            if(id == 74 && board[7][7] == 'wr' && board[7][5] === '' && board[7][6]=='') {
+                squares.push(76)
+            }
+
+            //Queenside
+            if(id == 74 && board[7][0] == 'wr'  && board[7][1] === '' && board[7][2]=='' && board[7][3] =='') {
+                squares.push(72)
+            }
+
+        } else {
+
+            //Kingside
+            if(id == 4 && board[0][7] == 'br' && board[0][5] === '' && board[0][6]=='') {
+                squares.push(6)
+            }
+
+            //Queenside
+            if(id == 4 && board[0][0] == 'br'  && board[0][1] === '' && board[0][2]=='' && board[0][3]=='') {
+                squares.push(2)
+            }
+
+        }
+        
         
     }
 

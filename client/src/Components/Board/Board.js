@@ -26,11 +26,11 @@ const Board = (props) => {
     // Current clicked square
     var [clickedSquare, setClicked] = useState(99)
 
+    // Castle right
+    var [canCastle, setCR] = useState(true)
+
     //Called every render
     useEffect(() => {
-        console.log(props.side)
-        console.log(props.board)
-        console.log(props.whoseMove)
         if(props.side == 'b')
             setBR("180deg")
     }, [props.side])
@@ -51,12 +51,39 @@ const Board = (props) => {
                 tempBoard.push(arr)
             }
 
-            console.log(tempBoard)
-
             //Let's make the move
             var temp = tempBoard[Math.trunc(clickedSquare/10)][clickedSquare % 10]
             tempBoard[Math.trunc(clickedSquare/10)][clickedSquare % 10] = ""
             tempBoard[i][j] = temp
+
+            if(temp.charAt(1)==='k' && canCastle) {
+                canCastle = false
+                //Castle
+                if(props.side == 'w'){
+                    //Kingside
+                    if(clickedSquare == 74 && 10*i+j===76) {
+                        console.log("KINGSIDE")
+                        tempBoard[7][7]=''
+                        tempBoard[7][5]='wr'
+                    }
+                    //Queenside
+                    if(clickedSquare == 74 && 10*i+j===72) {
+                        tempBoard[7][0]=''
+                        tempBoard[7][3]='wr'
+                    }
+                } else {
+                    //Kingside
+                    if(clickedSquare == 4 && 10*i+j===6) {
+                        tempBoard[0][7]=''
+                        tempBoard[0][5]='br'
+                    }
+                    //Queenside
+                    if(clickedSquare == 4 && 10*i+j===2) {
+                        tempBoard[0][0]=''
+                        tempBoard[0][3]='br'
+                    }
+                }
+            }
 
             // Deslect all squares
             setClicked(99)

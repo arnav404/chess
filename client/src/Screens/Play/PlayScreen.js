@@ -49,8 +49,6 @@ const PlayScreen = () => {
         socket = io(ENDPOINT, connectionOptions);
 
         socket.on('boardBack', (board) => {
-            console.log("boardback")
-            console.log(board)
             setBoard(board.board)
             setWM(board.whoseMove)
         })

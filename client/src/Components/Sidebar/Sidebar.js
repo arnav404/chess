@@ -87,8 +87,8 @@ const Sidebar = (props) => {
                     </div>
 
                     <h3 className="text">Enter code</h3>
-                        <div className="textbox form-group">
-                            <input value={formValue} onChange={handleChange} id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter code"/>
+                        <div className=" textbox form-group">
+                            <input className="" value={formValue} onChange={handleChange} id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter code"/>
                             <small id="emailHelp" class="form-text text-muted">Enter your friend's join code.</small>
                         </div>
                         <div className="buttondiv">
