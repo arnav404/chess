@@ -1,0 +1,32 @@
+{
+  "name": "chess",
+  "version": "1.0.0",
+  "description": "Chess game",
+  "main": "server.js",
+  "dependencies": {
+    "concurrently": "^6.0.0",
+    "express": "^4.17.1",
+    "moment": "^2.29.1",
+    "react-bootstrap": "^1.5.2",
+    "socket.io": "^4.0.1",
+    "socket.io-client": "^4.0.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.7"
+  },
+  "scripts": {
+    "start": "node server",
+    "client": "npm start --prefix client",
+    "dev": "concurrently \"nodemon server\" \"npm run client\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/arnav404/chess.git"
+  },
+  "author": "Arnav Thirunagari",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/arnav404/chess/issues"
+  },
+  "homepage": "https://github.com/arnav404/chess#readme"
+}
