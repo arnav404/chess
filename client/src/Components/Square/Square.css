@@ -7,6 +7,8 @@
   align-items: center;
   justify-content: center;
   border: solid;
+  border-width: 2px 0px 2px 0px;
+  border-color: #171717;
 }
 
 /* Square Text (i.e. e4) */
@@ -19,5 +21,5 @@
 
 /* Image of the piece */
 .piece {
-  width: 80px;
+  width: 90px;
 }

@@ -73,8 +73,9 @@ const Board = () => {
 
         socket.on('boardBack', ({board: board, whoseMove: whoseMove}) => {
             console.log("boardback")
-            setBoard(board)
-            setWM(whoseMove)
+            console.log(board)
+            setBoard(board.board)
+            setWM(board.whoseMove)
         })
     }, [ENDPOINT])
 

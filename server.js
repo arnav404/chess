@@ -13,13 +13,17 @@ var numOfPlayers = 0;
 app.use(router);
 
 io.on('connection', (socket) => {
-    console.log('Connected')
-    socket.emit('conn', numOfPlayers)
+    console.log('Connected');
+    if(numOfPlayers < 2) {
+        socket.join('memes');
+    } else {
+        socket.join('nah');
+    }
+    socket.emit('conn', numOfPlayers);
     numOfPlayers++;
 
     socket.on('board', ( board, whoseMove ) => {
-        console.log("board sent")
-        io.sockets.emit('boardBack', {board: board, whoseMove: whoseMove})
+        io.to('memes').emit('boardBack', {board: board, whoseMove: whoseMove})
     })
 
     socket.on('disconnect', () => {

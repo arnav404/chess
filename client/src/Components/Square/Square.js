@@ -10,7 +10,6 @@ const Square = (props) => {
 
     // Background color and text color
     var [bgc, setBGC] = useState("brown")
-    var [textColor, setTC] = useState("brown")
 
     // Is it clicked
     var [isClicked, setIC] = useState(false)
@@ -32,24 +31,20 @@ const Square = (props) => {
         // First checking if the user has clicked the square
         if(isClicked) {
             setBGC("orange")
-            setTC("#F04A00")
         } 
 
         // Check if the square is a possible move
         else if (isPM) {
             setBGC("pink")
-            setTC("#F04A00")
         } 
         
         // The square has not been clicked
         else {
             // If the square has not been clicked, it must have a dark or light color
             if((props.square%10 + parseInt(props.square/10)) % 2 == 0) {
-                setBGC("blanchedalmond")
-                setTC("#663300")
+                setBGC("#21bc70FF")
             } else {
-                setBGC("#663300")
-                setTC("blanchedalmond")
+                setBGC("#006940EE")
             }
         }
     }, [isClicked, isPM])
