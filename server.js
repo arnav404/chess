@@ -47,3 +47,7 @@ io.on('connection', (socket) => {
 
 const PORT = 5555 || process.env.PORT
 server.listen(PORT, () => console.log(`Server running on ${PORT}`));
+
+if (process.env.NODE_ENV === 'production') {
+    app.use(express.static('client/build'))
+}
