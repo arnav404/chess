@@ -16,6 +16,9 @@ io.on('connection', (socket) => {
     socket.on('board', ( board) => {
         io.to(board.room).emit('boardBack', board)
     })
+    socket.on('endGame', (board) => {
+        io.to(board.room).emit('finishGame', board)
+    })
 
     socket.on('clientJoin', ( roomID ) => {
         socket.join(roomID.roomID);

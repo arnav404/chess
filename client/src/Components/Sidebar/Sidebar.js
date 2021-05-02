@@ -13,6 +13,10 @@ const Sidebar = (props) => {
         setFV(event.target.value)
     }
 
+    const handleResign = () => {
+        props.setGS(5)
+    }
+
     useEffect(() => {
         console.log("PRESSSSSED")
         props.setRID(formValue)
@@ -53,7 +57,7 @@ const Sidebar = (props) => {
                 <div className="centered">
                     <h2 className="text">Playing...</h2>
                     <div className="buttondiv">
-                        <button className="bigbux cancel">Resign</button>
+                        <button onClick={() => {handleResign()}} className="bigbux cancel">Resign</button>
                     </div>
                     <p/>
                     <div className="buttondiv">
@@ -77,7 +81,7 @@ const Sidebar = (props) => {
                 </div>
             </div>
         )
-    } else {
+    } else if (props.gameState==4) {
         return (
             <div className="side">
                 <div className="centered">
@@ -94,6 +98,18 @@ const Sidebar = (props) => {
                         <div className="buttondiv">
                             <button onClick={() => setFS(!formSubmitted)} className="bigbux join">Join</button>
                         </div>
+                    <p/>
+                </div>
+            </div>
+        )
+    } else {
+        return (
+            <div className="side">
+                <div className="centered">
+                    <h2 className="text">{props.resignModalTitle}</h2>
+                    <div className="buttondiv">
+                        <button onClick={() => {props.setGS(1)}} className="bigbux blue">Continue</button>
+                    </div>
                     <p/>
                 </div>
             </div>

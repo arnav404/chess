@@ -42,6 +42,7 @@ const PlayScreen = () => {
     var [roomID, setRID] = useState('')
 
     const [gameState, setGS] = useState(1);
+    const [resignModalTitle, setRMT] = useState("Game Over!")
 
     // On connect to server
     useEffect(() => {
@@ -51,6 +52,19 @@ const PlayScreen = () => {
         socket.on('boardBack', (board) => {
             setBoard(board.board)
             setWM(board.whoseMove)
+        })
+
+        socket.on('finishGame', (board) => {
+            setCM(false)
+            if(gameState!=5) {
+                setGS(5)
+            }
+            console.log(board.side)
+            if(board.side == 'b') {
+                setRMT('White wins by resignation')
+            } else {
+                setRMT('Black wins by resignation')
+            }
         })
 
         socket.on('gameReady', (mapOfColors) => {
@@ -70,6 +84,12 @@ const PlayScreen = () => {
         socket.emit('board', {board: board, whoseMove: whoseMove, room: roomID})
     }, [whoseMove])
 
+    useEffect(() => {
+        if(gameState == 5 && canMove) {
+            socket.emit('endGame', {room: roomID, side: side})
+        }
+    }, [gameState])
+
     return (
         <div className="bigdiv">
             <Row>
@@ -77,7 +97,7 @@ const PlayScreen = () => {
                     <Board canMove={canMove} board={board} setBoard={setBoard} setWM={setWM} side={side} whoseMove={whoseMove}/>
                 </div>
                 <div className="padding">
-                    <Sidebar gameState={gameState} setGS={setGS} roomID={roomID} setRID={setRID}/>
+                    <Sidebar resignModalTitle={resignModalTitle} gameState={gameState} setGS={setGS} roomID={roomID} setRID={setRID}/>
                 </div>
             </Row>
         </div>
